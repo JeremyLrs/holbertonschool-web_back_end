@@ -4,7 +4,7 @@ Fonction to help for pagination
 """
 
 
-def index_range(page, page_size):
+def index_range(page: int, page_size: int) -> tuple:
     """
     Calculate the start and the end of pagination
     """
