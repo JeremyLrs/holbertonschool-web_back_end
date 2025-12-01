@@ -1,12 +1,11 @@
-#!usr/bin/env python3
+#!/usr/bin/env python3
 """
-Fonction to help for pagination
+0-simple_helper_function.py
 """
 
 
 def index_range(page: int, page_size: int) -> tuple[int, int]:
     """
-    Calculate the start and the end of pagination
+    index_range function
     """
-
     return (page_size * (page - 1), page_size * page)
