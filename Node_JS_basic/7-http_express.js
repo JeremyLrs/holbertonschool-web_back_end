@@ -2,7 +2,7 @@ const express = require('express');
 const countStudents = require('./3-read_file_async');
 
 const app = express();
-const database = process.argv[2];
+const port = 1245;
 
 app.get('/', (req, res) => {
     res.set('Content-Type', 'text/plain');
@@ -10,17 +10,16 @@ app.get('/', (req, res) => {
 });
 
 app.get('/students', (req, res) => {
-    res.type('text');
+    const file = process.argv[2];
 
-    countStudents(database)
-        .then((data) => {
-            res.send(`This is the list of our students\n${data}`);
-        })
-        .catch((err) => {
-            res.send(`This is the list of our students\n${err.message}`);
-        });
+    res.set('Content-Type', 'text/plain');
+    countStudents(file)
+        .then((data) => res.send(`This is the list of our students\n${data}`))
+        .catch((err) => res.send(`This is the list of our students\n${err.message}`));
 });
 
-app.listen(1245);
+app.listen(port, () => {
+    console.log('Server running on http://localhost:1245/');
+});
 
 module.exports = app;
